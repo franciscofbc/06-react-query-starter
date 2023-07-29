@@ -1,14 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
+import { useFetchTasks } from './reactQueryCustomHooks';
 import SingleItem from './SingleItem';
-import customFetch from './utils';
 
 const Items = () => {
-  const result = useQuery({
-    queryKey: ['tasks'],
-    queryFn: () => customFetch.get('api/tasks'),
-  });
-
-  const { isLoading, data, isError, error } = result;
+  const { isLoading, data, error } = useFetchTasks();
 
   if (isLoading) {
     return <div className="loading" style={{ marginTop: '1rem' }}></div>;
